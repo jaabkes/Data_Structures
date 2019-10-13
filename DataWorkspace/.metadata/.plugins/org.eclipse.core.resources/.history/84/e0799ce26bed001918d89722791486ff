@@ -1,0 +1,10 @@
+package linear;
+import org.junit.*;
+public class SortedLinkedListTest
+{
+
+	@Test
+	public void begin() {
+		
+	}
+}
