@@ -1,0 +1,9 @@
+package linear;
+
+public class maaain
+{
+	public static void main(String[] args) 
+	{
+		
+	}
+}
