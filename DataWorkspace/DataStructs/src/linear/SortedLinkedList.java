@@ -5,8 +5,17 @@ import java.util.Iterator;
 
 /**
  * 
- * @author jacobabkes This class implements a Sorted Linked List. The type of
- *         this list MUST be a comparable type.
+ * @author jacobabkes 
+ * This class implements a Sorted Linked List. The type of
+ * this list MUST be a comparable type.
+ * 
+ * This class is a SortedLinkedList that implements Iterable.
+ * This SortedLinkedList sorts data from, min == get(0) to max == get(size-1)
+ * As mentioned above the starting index == 0, and the max index = size - 1 
+ * 
+ * This implementation is one where you only have access to a head node,
+ * each node only has one reference to a neighbor node, which is the the node after it
+ *         
  * @param <E>
  */
 public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> implements Iterable<E> {
@@ -14,7 +23,8 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 	private int size;
 
 	/**
-	 * 
+	 * If the data is null, this will throw an IllegalArguementException
+	 * Otherwise, it will create a the head node and initialize the size
 	 * @param data
 	 */
 	public SortedLinkedList(E data) {
@@ -22,7 +32,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 		size++;
 	}
 
-	@Override
+	@Override //O(Index) is the time complexity 
 	public E get(int index) {
 		if (index < 0 || index > size - 1) {
 			throw new IllegalArgumentException("Index is < 0 or > size-1");
@@ -49,7 +59,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 	 * @param toAdd
 	 * @return
 	 */
-	@Override
+	@Override //O(n) is the time complexity where n = size
 	public boolean add(E data) {
 		if (data == null)
 			return false;
@@ -70,7 +80,6 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 		size++;
 		return true;
 	}
-
 	/**
 	 * Returns true if the given data entry was removed
 	 * 
@@ -93,6 +102,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 				size--;
 				return true;
 			}
+			looking = looking.next;
 		}
 		return false;
 	}
@@ -107,9 +117,18 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 	{
 		if(index > size-1 || index < 0)
 			return null;
-		//TODO
-		return null;
-
+		if(index == 0) //first node
+		{
+			E data = head.data;
+			head = head.next;
+			size--;
+			return data;
+		}
+		SLLNode<E> looking = head;
+		for(int i = 0; i < index-1; looking = looking.next, i++);
+		E data = looking.next.data;
+		looking.next = looking.next.next;
+		return data;
 	}
 
 	public Iterator<E> iterator() {

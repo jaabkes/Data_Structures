@@ -1,0 +1,70 @@
+package linear;
+
+import static org.junit.Assert.*;
+import org.junit.*;
+
+public class SortedLinkedListTest {
+
+	@Test
+	public void testAdd1() {
+		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(2));
+		assertEquals(1, sll.size());
+		
+		sll.add(new Integer(3));
+		assertEquals(2, sll.size());
+		assertEquals(new Integer(3), sll.get(1));
+		
+		sll.add(new Integer(2));
+		assertEquals(3, sll.size());
+		assertEquals(new Integer(2), sll.get(0));
+		
+		sll.add(new Integer(7));
+		assertEquals(new Integer(7), sll.get(3));
+		
+		sll.add(new Integer(5));
+		assertEquals(5, sll.size());
+		assertEquals(new Integer(5), sll.get(3));
+		
+		sll.add(new Integer(1));
+		assertEquals(new Integer(1), sll.get(0));
+	}
+
+	@Test
+	public void testRemoveData() {
+		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(2));
+		sll.add(new Integer(3));
+		sll.add(new Integer(2));
+		sll.add(new Integer(7));
+		sll.add(new Integer(5));
+		sll.add(new Integer(1));
+
+		assertTrue(sll.remove(new Integer(2))); //a node in between two nodes
+		assertEquals(new Integer(3), sll.get(2));
+		assertEquals(new Integer(2), sll.get(1));
+		assertEquals(5, sll.size());
+		
+		assertTrue(sll.remove(new Integer(1))); //first node removal
+		assertEquals(new Integer(2), sll.get(0));
+		assertEquals(4, sll.size());
+		
+		
+		assertTrue(sll.remove(new Integer(7))); //end node removal
+		assertEquals(new Integer(5), sll.get(2));
+		assertEquals(3, sll.size());
+	}
+
+	@Test
+	public void testRemoveIndex() 
+	{
+		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(8));
+		sll.add(new Integer(4));
+		sll.add(new Integer(2));
+		sll.add(new Integer(-3));
+		//System.out.println(sll);    //(-3)--> (2)--> (4)--> (8)--> 
+		assertEquals(new Integer(-3), sll.remove(0)); //(2)--> (4)--> (8)--> 
+		assertEquals(new Integer(2), sll.get(0));
+		sll.add(new Integer(-3)); //(-3)--> (2)--> (4)--> (8)--> 
+		
+		assertEquals(new Integer(4), sll.remove(2));
+	}
+}
