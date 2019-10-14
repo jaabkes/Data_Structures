@@ -1,0 +1,36 @@
+package linear;
+import static org.junit.Assert.*;
+import org.junit.*;
+public class SortedLinkedListTest
+{
+
+	@Test
+	public void testAdd1() {
+		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(2));
+		sll.add(new Integer(3));
+		assertEquals(new Integer(3), sll.get(1));
+		sll.add(new Integer(2));
+		assertEquals(new Integer(2), sll.get(0));
+		sll.add(new Integer(7));
+		assertEquals(new Integer(7), sll.get(3));
+		sll.add(new Integer(5));
+		assertEquals(new Integer(5), sll.get(3));
+		sll.add(new Integer(1));
+		assertEquals(new Integer(1), sll.get(0));
+	}
+	
+	@Test
+	public void testRemoveData() 
+	{
+		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(2));
+		sll.add(new Integer(3));
+		sll.add(new Integer(2));
+		sll.add(new Integer(7));
+		sll.add(new Integer(5));
+		sll.add(new Integer(1));
+
+		assertTrue(sll.remove(new Integer(2)));
+		
+
+	}
+}

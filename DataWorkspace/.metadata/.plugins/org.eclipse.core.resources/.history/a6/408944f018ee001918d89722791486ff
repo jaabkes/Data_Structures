@@ -1,0 +1,132 @@
+package linear;
+import java.util.AbstractList;
+import java.util.Iterator;
+/**
+ * 
+ * @author jacobabkes
+ * This class implements a Sorted Linked List. The type of this list MUST be a
+ * comparable type.
+ * @param <E>
+ */
+public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> implements Iterable<E>
+{
+	private SLLNode<E> head;
+	private int size;
+	
+	/**
+	 * 
+	 * @param data
+	 */
+	public SortedLinkedList(E data) 
+	{
+		head = new SLLNode<E>(data, null);
+		size++;
+	}
+	
+	/**
+	 * Returns the head node data
+	 * @return
+	 */
+	public E getHeadData()
+	{
+		return head.data;
+	}
+	
+
+	@Override
+	public E get(int index)
+	{
+		if(index < 0 || index > size-1) 
+		{
+			throw new IllegalArgumentException("Index is < 0 or > size-1");
+		}
+		SLLNode<E> looking = head;
+		int counter = 0;
+		while(looking != null) 
+		{
+			if(counter == index)
+				return looking.data;
+			counter ++;
+			looking = looking.next;
+		}
+		return null;
+	}
+
+	@Override
+	public int size()
+	{
+		return size;
+	}
+
+	/**
+	 * This method will perform an insertion add in order to
+	 * maintain a sorted list
+	 * @param toAdd
+	 */
+	private void add(E data) 
+	{
+		//TODO
+	}
+	public Iterator<E> iterator()
+	{
+		return new SLLIterator();
+	}
+	
+	/**
+	 * 
+	 * @author jacobabkes
+	 *
+	 * @param <E>
+	 */
+	private static class SLLNode<E extends Comparable<E>>
+	{
+		
+		E data = null;
+		SLLNode<E> next = null;
+		/**
+		 * Throws a null pointer exception if you attempt to insert null data
+		 * @param data
+		 * @param next
+		 */
+		private SLLNode(E data, SLLNode<E> next) 
+		{
+			if(data == null)
+				throw new NullPointerException();
+			this.next = next;
+			this.data = data;
+		}
+		//TODO
+		
+	}//SLLNode End
+	
+	/**
+	 * 
+	 * @author jacobabkes
+	 *
+	 * @param <E>
+	 */
+	private class SLLIterator implements Iterator<E>
+	{
+		public SLLIterator() {
+			// TODO
+		}
+
+		@Override
+		public boolean hasNext()
+		{
+			// TODO Auto-generated method stub
+			return false;
+		}
+
+		@Override
+		public E next()
+		{
+			// TODO Auto-generated method stub
+			return null;
+		}
+
+
+	} //end of SLLIterator
+	
+	
+} //End of SLL

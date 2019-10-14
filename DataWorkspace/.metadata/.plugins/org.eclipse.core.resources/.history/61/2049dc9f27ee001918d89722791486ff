@@ -1,0 +1,16 @@
+package linear;
+import static org.junit.Assert.*;
+import org.junit.*;
+public class SortedLinkedListTest
+{
+
+	@Test
+	public void testAdd1() {
+		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(2));
+		sll.add(new Integer(3));
+		assertEquals(new Integer(3), sll.get(1));
+		sll.add(new Integer(1));
+		assertEquals(new Integer(1), sll.get(0));
+		sll.add(new Integer(7));
+	}
+}

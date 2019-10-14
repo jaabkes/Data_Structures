@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SortedLinkedListTest" project="DataStructs" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="linear.SortedLinkedListTest" time="0.0" uniqueid="[engine:junit-vintage]/[runner:linear.SortedLinkedListTest]">
+    <testcase name="testAdd1" classname="linear.SortedLinkedListTest" time="0.0" displayname="testAdd1" uniqueid="[engine:junit-vintage]/[runner:linear.SortedLinkedListTest]/[test:testAdd1(linear.SortedLinkedListTest)]"/>
+  </testsuite>
+</testrun>
