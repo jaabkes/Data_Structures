@@ -15,6 +15,7 @@ import java.util.Iterator;
  * 
  * This implementation is one where you only have access to a head node,
  * each node only has one reference to a neighbor node, which is the the node after it
+ * No entry is allowed to be null, it doesn't make sense to compare something to nulls
  *         
  * @param <E>
  */
@@ -32,7 +33,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 		size++;
 	}
 
-	@Override //O(Index) is the time complexity 
+	@Override //O(n) is the time complexity 
 	public E get(int index) {
 		if (index < 0 || index > size - 1) {
 			throw new IllegalArgumentException("Index is < 0 or > size-1");
@@ -65,7 +66,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 			return false;
 		SLLNode<E> added = new SLLNode<E>(data, null);
 		SLLNode<E> looking = head;
-		if (added.data.compareTo(looking.data) < 0) // if it is the first item
+		if (head == null || added.data.compareTo(looking.data) < 0) // if it is the first item
 		{
 			added.next = head;
 			head = added; // update the head reference
@@ -86,7 +87,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 	 * @param data
 	 * @return
 	 */
-	public boolean remove(E data) {
+	public boolean remove(E data) { // O(n) time complexity
 		if (data == null) // null data does not exist because it can't be sorted
 			return false;
 		if (head.data.compareTo(data) == 0) // if its the head node
@@ -107,13 +108,18 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 		return false;
 	}
 
+	public void removeAll() 
+	{
+		head = null;
+		size = 0;
+	}
 	/**
 	 * Removes the item at the given index and returns it
 	 * returns null if the index doesn't exist
 	 * 
 	 * @return
 	 */
-	public E remove(int index) 
+	public E remove(int index) //O(n) time complexity
 	{
 		if(index > size-1 || index < 0)
 			return null;
@@ -143,8 +149,8 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 	 */
 	private static class SLLNode<E extends Comparable<E>> {
 
-		E data = null;
-		SLLNode<E> next = null;
+		private E data = null;
+		private SLLNode<E> next = null;
 
 		/**
 		 * Throws an illegal argument exception if you attempt to insert null data
@@ -154,7 +160,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 		 */
 		private SLLNode(E data, SLLNode<E> next) {
 			if (data == null)
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Entry can't be null");
 			this.next = next;
 			this.data = data;
 		}
@@ -168,20 +174,24 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 	 * @param <E>
 	 */
 	private class SLLIterator implements Iterator<E> {
-		public SLLIterator() {
-			// TODO
+		private SLLNode<E> prev;
+		private SLLNode<E> next;
+		public SLLIterator() 
+		{
+			next = head;
+			prev = null;
 		}
 
 		@Override
 		public boolean hasNext() {
-			// TODO Auto-generated method stub
-			return false;
+			return (next != null);
 		}
 
 		@Override
 		public E next() {
-			// TODO Auto-generated method stub
-			return null;
+			prev = next;
+			next = next.next;
+			return prev.data;
 		}
 
 	} // end of SLLIterator
@@ -189,7 +199,7 @@ public class SortedLinkedList<E extends Comparable<E>> extends AbstractList<E> i
 	
 	
 	/**
-	 * This method is will only work if type E has it's own toString method
+	 * This method will only work if type E has it's own toString method
 	 */
 	public String toString() {
 		SLLNode<E> looking = head;

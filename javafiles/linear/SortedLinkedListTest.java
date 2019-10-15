@@ -12,24 +12,24 @@ public class SortedLinkedListTest {
 	@Test
 	public void testAdd1() {
 		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(2));
-		assertEquals(1, sll.size());
+		assertEquals(1, sll.size()); 
 		
-		sll.add(new Integer(3));
+		sll.add(new Integer(3)); //insert at the end
 		assertEquals(2, sll.size());
 		assertEquals(new Integer(3), sll.get(1));
 		
-		sll.add(new Integer(2));
+		sll.add(new Integer(2)); //insert between two nodes
 		assertEquals(3, sll.size());
 		assertEquals(new Integer(2), sll.get(0));
 		
-		sll.add(new Integer(7));
+		sll.add(new Integer(7)); //insert at the end
 		assertEquals(new Integer(7), sll.get(3));
 		
-		sll.add(new Integer(5));
+		sll.add(new Integer(5)); //insert between two nodes
 		assertEquals(5, sll.size());
 		assertEquals(new Integer(5), sll.get(3));
 		
-		sll.add(new Integer(1));
+		sll.add(new Integer(1)); //insert at the beggining 
 		assertEquals(new Integer(1), sll.get(0));
 	}
 
@@ -41,6 +41,7 @@ public class SortedLinkedListTest {
 		sll.add(new Integer(7));
 		sll.add(new Integer(5));
 		sll.add(new Integer(1));
+
 
 		assertTrue(sll.remove(new Integer(2))); //a node in between two nodes
 		assertEquals(new Integer(3), sll.get(2));
@@ -82,7 +83,24 @@ public class SortedLinkedListTest {
 		assertEquals(new Integer(2), sll.remove(1)); //(-3)-->  (4)--> (8)--> 
 		assertEquals(new Integer(-3), sll.get(0));
 		assertEquals(new Integer(4), sll.get(1));
+		/* TESTING REMOVING ALL NODES AND THEN ADDING  */
 
-		
+		sll.removeAll();
+		sll.add(new Integer(4));
+		assertEquals(1, sll.size());
+		assertEquals(new Integer(4), sll.get(0));
+
+	}
+	@Test 
+	public void iterator()
+	{
+		SortedLinkedList<Integer> sll = new SortedLinkedList<Integer>(new Integer(4));
+		sll.add(new Integer(2));
+		int n = 0;
+		for(Integer i : sll) //this right here is the most important feature of any collection tbh
+		{ 
+			assertEquals(i, sll.get(n));
+			n++;
+		}
 	}
 }

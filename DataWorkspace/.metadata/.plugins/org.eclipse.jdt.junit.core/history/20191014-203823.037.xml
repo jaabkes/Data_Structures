@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="SortedLinkedListTest" project="DataStructs" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="linear.SortedLinkedListTest" time="0.001" uniqueid="[engine:junit-vintage]/[runner:linear.SortedLinkedListTest]">
+    <testcase name="testAdd1" classname="linear.SortedLinkedListTest" time="0.001" displayname="testAdd1" uniqueid="[engine:junit-vintage]/[runner:linear.SortedLinkedListTest]/[test:testAdd1(linear.SortedLinkedListTest)]"/>
+    <testcase name="testRemoveIndex" classname="linear.SortedLinkedListTest" time="0.0" displayname="testRemoveIndex" uniqueid="[engine:junit-vintage]/[runner:linear.SortedLinkedListTest]/[test:testRemoveIndex(linear.SortedLinkedListTest)]"/>
+    <testcase name="testRemoveData" classname="linear.SortedLinkedListTest" time="0.0" displayname="testRemoveData" uniqueid="[engine:junit-vintage]/[runner:linear.SortedLinkedListTest]/[test:testRemoveData(linear.SortedLinkedListTest)]"/>
+    <testcase name="iterator" classname="linear.SortedLinkedListTest" time="0.0" displayname="iterator" uniqueid="[engine:junit-vintage]/[runner:linear.SortedLinkedListTest]/[test:iterator(linear.SortedLinkedListTest)]"/>
+  </testsuite>
+</testrun>
